@@ -1,0 +1,15 @@
+{
+	"name": "AngularJS-App",
+	"version": "0.0.1",
+	"description": "",
+	"license": "MIT",
+	"dependencies": {
+		"gulp": "latest",
+		"gulp-concat": "latest",
+		"gulp-sass": "latest",
+		"nodewebkit": "latest"
+	},
+	"scripts": {
+		"start": "nodewebkit"
+	}
+}
