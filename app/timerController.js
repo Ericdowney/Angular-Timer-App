@@ -30,11 +30,8 @@ app.controller("TimerController", ["$scope", "$interval", "DataService", functio
 
 	$scope.startCurrentTimer = function () {
 		if ($scope.interval != null) {
-			$interval.cancel($scope.interval);
+			$scope.cancelInterval($scope.interval);
 			$scope.interval = null;
-			$scope.currentTimer.seconds = 0;
-			$scope.currentTimer.minutes = 0;
-			$scope.currentTimer.hours = 0;
 		}
 		else {
 			$scope.interval = $interval(function () {
@@ -44,6 +41,13 @@ app.controller("TimerController", ["$scope", "$interval", "DataService", functio
 
 			}, 1000);
 		}
+	};
+
+	$scope.cancelInterval = function (intervalPromise) {
+		$interval.cancel(intervalPromise);
+		$scope.currentTimer.seconds = 0;
+		$scope.currentTimer.minutes = 0;
+		$scope.currentTimer.hours = 0;
 	};
 
 	$scope.getHistory = function () {
