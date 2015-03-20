@@ -4,6 +4,58 @@ body {
 
 @media (min-width: 0em) {
 
+	.Top {
+		width: 90%;
+		margin-left: auto;
+		margin-right: auto;
+		text-align: center;
+		font-size: 3em;
+
+		.timer-label {
+			margin: 1em;
+			border: 1px solid gray;
+			border-radius: 0.15em;
+			font-size: 1.5em;
+		}
+
+		.start-timer {
+			display: inline-block;
+			margin-right: 0.5em;
+		}
+
+		.save-timer {
+			display: inline-block;
+		}
+
+		.button {
+			background: lightblue;
+			padding: 0.5em;
+			border-radius: 0.25em;
+		}
+
+		.button:active {
+			background: linear-gradient(white, lightblue);
+			padding: 0.5em;
+			border-radius: 0.25em;
+		}
+	}
+
+	.list-container {
+		width: 95%;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: 1em;
+
+		height: 60%;
+		border: 1px solid gray;
+		border-radius: 0.25em;
+		background-color: lightgray;
+
+		.timer {
+			width: 100%;
+			border-bottom: 1px solid gray;
+		}
+	}
 }
 
 @media (min-width: 62em) {

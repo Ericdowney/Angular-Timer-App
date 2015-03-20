@@ -15,4 +15,9 @@ gulp.task('styles', function () {
 		.pipe( gulp.dest("distribution") );
 });
 
+gulp.task("watch", function () {
+	gulp.watch('app/**/*.js', ["javascript"]);
+	gulp.watch('sass/**/*.sass', ["styles"]);
+});
+
 gulp.task("default", ["javascript", "styles"], function () {});

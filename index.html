@@ -8,17 +8,23 @@
 	</head>
 
 	<body ng-app="TimerApp">
-		<div ng-controller="TimerController">
+		<div ng-controller="TimerController" ng-init="init()">
 			<div class="Top">
-				<label ng-bind="currentTimer"></label>
-				<div class="start-timer" ng-click="startCurrentTimer()">Start Timer</div>
-				<div class="save-timer" ng-click="save(currentTimer)">Save Timer</div>
+				<div class="timer-label">
+					<label ng-bind="currentTimer.hours"></label> :
+					<label ng-bind="currentTimer.minutes"></label> :
+					<label ng-bind="currentTimer.seconds"></label>
+				</div>
+				<div class="start-timer button" ng-click="startCurrentTimer()">Start Timer</div>
+				<div class="save-timer button" ng-click="save(currentTimer)">Save Timer</div>
 			</div>
 
 			<div class="list-container">
-				<div class="timer" ng-repeat="timer in getHistory()">
+				<div class="timer" ng-repeat="timer in history">
 					<div class="header">{{timer.entry_date}}</div>
-					<div class="time">{{timer.time}}</div>
+					<div class="time">
+						{{timer.hours}} : {{timer.minutes}} : {{timer.seconds}}
+					</div>
 				</div>
 			</div>
 		</div>

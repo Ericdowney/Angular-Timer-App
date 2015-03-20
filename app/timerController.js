@@ -1,9 +1,16 @@
 
-app.controller("TimerController", ["$scope", "DataService", function ($scope, DataService) {
+app.controller("TimerController", ["$scope", "$interval", "DataService", function ($scope, $interval, DataService) {
 	$scope.currentTimer = {
 		hours: 0,
 		minutes: 0,
 		seconds: 0
+	};
+
+	$scope.interval = null;
+	$scope.history = {};
+
+	$scope.init = function () {
+		$scope.history = $scope.getHistory();
 	};
 
 	$scope.checkSeconds = function () {
@@ -22,12 +29,21 @@ app.controller("TimerController", ["$scope", "DataService", function ($scope, Da
 	};
 
 	$scope.startCurrentTimer = function () {
-		setInterval(function () {
+		if ($scope.interval != null) {
+			$interval.cancel($scope.interval);
+			$scope.interval = null;
+			$scope.currentTimer.seconds = 0;
+			$scope.currentTimer.minutes = 0;
+			$scope.currentTimer.hours = 0;
+		}
+		else {
+			$scope.interval = $interval(function () {
 
-			$scope.checkSeconds();
-			$scope.checkMinutes();
+				$scope.checkSeconds();
+				$scope.checkMinutes();
 
-		}, 1000);
+			}, 1000);
+		}
 	};
 
 	$scope.getHistory = function () {
@@ -36,5 +52,6 @@ app.controller("TimerController", ["$scope", "DataService", function ($scope, Da
 
 	$scope.save = function (timer) {
 		DataService.saveTimerToDataStore(timer);
+		$scope.history = $scope.getHistory();
 	};
 }]);
